@@ -11,12 +11,12 @@ const ImageCacheManagerOptionsPropTypes = require('./ImageCacheManagerOptionsPro
 const flattenStyle = ReactNative.StyleSheet.flatten;
 
 const ImageCacheManager = require('./ImageCacheManager');
+const NetInfo = require("@react-native-community/netinfo")
 
 const {
     View,
     ImageBackground,
     ActivityIndicator,
-    NetInfo,
     Platform,
     StyleSheet,
 } = ReactNative;
@@ -52,8 +52,8 @@ class CachedImage extends React.Component {
     };
 
     static defaultProps = {
-            renderImage: props => (<ImageBackground imageStyle={props.style} ref={CACHED_IMAGE_REF} {...props} />),
-            activityIndicatorProps: {},
+        renderImage: props => (<ImageBackground imageStyle={props.style} ref={CACHED_IMAGE_REF} {...props} />),
+        activityIndicatorProps: {},
     };
 
     static contextTypes = {
@@ -206,7 +206,7 @@ class CachedImage extends React.Component {
             return (
                 <ActivityIndicator
                     {...activityIndicatorProps}
-                    style={[imageStyle, activityIndicatorStyle]}/>
+                    style={[imageStyle, activityIndicatorStyle]} />
             );
         }
         // otherwise render an image with the defaultSource with the ActivityIndicator on top of it
@@ -218,11 +218,11 @@ class CachedImage extends React.Component {
             children: (
                 LoadingIndicator
                     ? <View style={[imageStyle, activityIndicatorStyle]}>
-                    <LoadingIndicator {...activityIndicatorProps} />
-                </View>
+                        <LoadingIndicator {...activityIndicatorProps} />
+                    </View>
                     : <ActivityIndicator
-                    {...activityIndicatorProps}
-                    style={activityIndicatorStyle}/>
+                        {...activityIndicatorProps}
+                        style={activityIndicatorStyle} />
             )
         });
     }
